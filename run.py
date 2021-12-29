@@ -106,3 +106,62 @@ def apply_nms(output_dict, iou_thresh=0.5, score_thresh=0.6):
                    'detection_scores' : nmsd.nmsed_scores[0].numpy()[:valid],
                    }
     return output_dict
+
+def make_and_show_inference(img, interpreter, input_details, output_details, category_index, nms=True, score_thresh=0.6, iou_thresh=0.5):
+    """
+    Generate and draw inference on image
+
+    Parameters
+    ----------
+    img : Array of uint8
+        Original Image to find predictions on.
+    interpreter : tensorflow.lite.python.interpreter.Interpreter
+        tflite model interpreter
+    input_details : list
+        input details of interpreter
+    output_details : list
+        output details of interpreter
+    category_index : dict
+        dictionary of labels
+    nms : bool, optional
+        To perform non-maximum suppression or not. The default is True.
+    score_thresh : int, optional
+        score above predicted class is accepted. The default is 0.6.
+    iou_thresh : int, optional
+        Intersection Over Union Threshold. The default is 0.5.
+
+    Returns
+    -------
+    NONE
+    """
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img_rgb = cv2.resize(img_rgb, (300, 300), cv2.INTER_AREA)
+    img_rgb = img_rgb.reshape([1, 300, 300, 3])
+
+    interpreter.set_tensor(input_details[0]['index'], img_rgb)
+    interpreter.invoke()
+    
+    output_dict = get_output_dict(img_rgb, interpreter, output_details, nms, iou_thresh, score_thresh)
+    # Visualization of the results of a detection.
+    vis_util.visualize_boxes_and_labels_on_image_array(
+    img,
+    output_dict['detection_boxes'],
+    output_dict['detection_classes'],
+    output_dict['detection_scores'],
+    category_index,
+    use_normalized_coordinates=True,
+    min_score_thresh=score_thresh,
+    line_thickness=3)
+
+
+# Load TFLite model and allocate tensors.
+interpreter = tf.lite.Interpreter(model_path="coco_ssd_mobilenet/detect_2.tflite")
+interpreter.allocate_tensors()
+
+# Get input and output tensors.
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+category_index = create_category_index()
+input_shape = input_details[0]['shape']
+cap = cv2.VideoCapture("car_video.mp4")
