@@ -170,6 +170,7 @@ cap = cv2.VideoCapture("test-video.m4v")
 
 while(True):
     ret, img = cap.read()
+    img = cv2.resize(img, None, fx=1/2, fy=1/2, interpolation=cv2.INTER_AREA)
     if ret:
         make_and_show_inference(img, interpreter, input_details, output_details, category_index)
         cv2.imshow("image", img)
