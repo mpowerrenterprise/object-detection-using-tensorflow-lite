@@ -164,4 +164,19 @@ output_details = interpreter.get_output_details()
 
 category_index = create_category_index()
 input_shape = input_details[0]['shape']
-cap = cv2.VideoCapture("car_video.mp4")
+
+
+cap = cv2.VideoCapture("test-video.m4v")
+
+while(True):
+    ret, img = cap.read()
+    if ret:
+        make_and_show_inference(img, interpreter, input_details, output_details, category_index)
+        cv2.imshow("image", img)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+    else:
+        break
+    
+cap.release()
+cv2.destroyAllWindows()
