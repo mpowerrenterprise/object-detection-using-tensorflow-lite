@@ -106,6 +106,28 @@ Download Protobuf:- [https://github.com/protocolbuffers/protobuf/releases](https
 * [Convert TensorFlow model to TensorFlow Lite](https://www.tensorflow.org/lite/convert)
 
 
+### Execution & Running
+
+```
+ python run.py
+
+```
+
+##### To change video source or webcam.
+
+Note:- We can give the path of the video to process. If we want to use it as a real time webcam. We can simply put the index of the camera
+
+Example:-
+
+```
+cap = cv2.VideoCapture(0)
+
+```
+
+Note:- 0 is the first camera, 1 is the second camera and 2,3 and etc.
+
+
+
 ### Output
 
 
