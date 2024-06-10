@@ -1,4 +1,4 @@
-# OBJECT DETECTION WITH TENSORFLOW LITE
+# Object Detection With TensorFlow Lite
 
 ## Introduction
 
@@ -134,7 +134,7 @@ Note:- 0 is the first camera, 1 is the second camera and 2,3 and etc.
 ![Demo1](github-readme-content/1.jpg)
 
 
-# CONTACT
+# Contact
 
 ### Website: 
 
