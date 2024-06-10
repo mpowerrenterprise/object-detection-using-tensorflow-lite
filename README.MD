@@ -1,4 +1,4 @@
-# Object Detection With TensorFlow Lite
+# Object Detection Using TensorFlow Lite
 
 ## Introduction
 
