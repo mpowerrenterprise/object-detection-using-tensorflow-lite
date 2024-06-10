@@ -1,4 +1,4 @@
-# Object Detection with TensorFlow Lite
+# OBJECT DETECTION WITH TENSORFLOW LITE
 
 ## Introduction
 
@@ -138,7 +138,7 @@ Note:- 0 is the first camera, 1 is the second camera and 2,3 and etc.
 
 ### Website: 
 
-[![Website](https://img.shields.io/badge/Website%3A%20www.gunarakulan.info-%23E01E5A?style=flat&logo=realm&logoColor=white)](http://www.gunarakulan.info)
+[![Visit](https://img.shields.io/badge/Visit%3A%20www.gunarakulan.info-%23E01E5A?style=flat&logo=realm&logoColor=white)](https://www.gunarakulan.info)
 
 ### Social Media:
 
